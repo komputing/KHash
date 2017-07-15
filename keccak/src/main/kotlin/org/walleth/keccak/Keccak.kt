@@ -59,12 +59,9 @@ class Keccak(permutationWidth: Int = DEFAULT_KECCAK_PERMUTATION_WIDTH) {
         var Z = ""
 
         do {
-
-            for (i in 0..4) {
-                (0..4).filter { 5 * i + it < parameter.r / w }
-                        .forEach { Z += getReverseHex(S[it][i].toByteArray()).fillWithZero(16).substring(0, 16) }
+            for (x in 0..parameter.r / w) {
+                Z += getReverseHex(S[x % 5][x / 5].toByteArray()).fillWithZero(16).substring(0, 16)
             }
-
             doKeccackf(S)
         } while (Z.length < parameter.outputLengthInBytes * 2)
 
