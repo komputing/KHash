@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/walleth/keccak.svg)](https://jitpack.io/#walleth/keccak)
+
 Keccak
 ======
 
