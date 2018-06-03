@@ -16,18 +16,17 @@ fun ByteArray.calculateKeccak(parameter: Parameter): ByteArray {
     val uState = IntArray(200)
     val uMessage = convertToUInt(this)
 
-    val rateInBytes = parameter.rate / 8
     var blockSize = 0
     var inputOffset = 0
 
     // Absorbing phase
     while (inputOffset < uMessage.size) {
-        blockSize = min(uMessage.size - inputOffset, rateInBytes)
+        blockSize = min(uMessage.size - inputOffset, parameter.rateInBytes)
         for (i in 0 until blockSize) {
             uState[i] = uState[i] xor uMessage[i + inputOffset]
         }
 
-        if (blockSize == rateInBytes) {
+        if (blockSize == parameter.rateInBytes) {
             doKeccakf(uState)
         }
 
@@ -36,18 +35,18 @@ fun ByteArray.calculateKeccak(parameter: Parameter): ByteArray {
 
     // Padding phase
     uState[blockSize] = uState[blockSize] xor parameter.d
-    if (parameter.d and 0x80 != 0 && blockSize == rateInBytes - 1) {
+    if (parameter.d and 0x80 != 0 && blockSize == parameter.rateInBytes - 1) {
         doKeccakf(uState)
     }
 
-    uState[rateInBytes - 1] = uState[rateInBytes - 1] xor 0x80
+    uState[parameter.rateInBytes - 1] = uState[parameter.rateInBytes - 1] xor 0x80
     doKeccakf(uState)
 
     // Squeezing phase
     val byteResults = ByteArrayOutputStream()
     var tOutputLen = parameter.outputLengthInBytes
     while (tOutputLen > 0) {
-        blockSize = min(tOutputLen, rateInBytes)
+        blockSize = min(tOutputLen, parameter.rateInBytes)
         for (i in 0 until blockSize) {
             byteResults.write(uState[i].toByte().toInt())
         }
