@@ -1,4 +1,4 @@
-package org.walleth.keccak
+package org.walleth.sha3
 
 // extracted from:
 // https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip

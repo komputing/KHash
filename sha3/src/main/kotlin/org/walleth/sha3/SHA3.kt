@@ -1,4 +1,4 @@
-package org.walleth.keccak
+package org.walleth.sha3
 
 import java.io.ByteArrayOutputStream
 import java.lang.Math.min
@@ -10,9 +10,9 @@ import java.util.Arrays.fill
 
 private val BIT_64 = BigInteger("18446744073709551615")
 
-fun String.calculateKeccak(parameter: Parameter) = toByteArray().calculateKeccak(parameter)
+fun String.calculateKeccak(parameter: SHA3Parameter) = toByteArray().calculateKeccak(parameter)
 
-fun ByteArray.calculateKeccak(parameter: Parameter): ByteArray {
+fun ByteArray.calculateKeccak(parameter: SHA3Parameter): ByteArray {
     val uState = IntArray(200)
     val uMessage = convertToUInt(this)
 

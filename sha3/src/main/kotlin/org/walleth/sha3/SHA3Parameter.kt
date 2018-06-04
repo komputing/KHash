@@ -1,13 +1,13 @@
-package org.walleth.keccak
+package org.walleth.sha3
 
 /**
  * Parameters defining the FIPS 202 standard
  */
 
 
-enum class Parameter constructor(val rateInBytes: Int,
-                                 val outputLengthInBytes: Int,
-                                 val d: Int) {
+enum class SHA3Parameter constructor(val rateInBytes: Int,
+                                          val outputLengthInBytes: Int,
+                                          val d: Int) {
 
     KECCAK_224(144, 28, 0x01),
     KECCAK_256(136, 32, 0x01),

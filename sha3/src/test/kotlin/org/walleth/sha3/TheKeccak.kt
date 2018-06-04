@@ -1,11 +1,11 @@
-package org.walleth.keccak
+package org.walleth.sha3
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.walleth.keccak.Parameter.*
 import org.walleth.khex.hexToByteArray
 import org.walleth.khex.toHexString
 import org.walleth.khex.toNoPrefixHexString
+import org.walleth.sha3.SHA3Parameter.*
 
 class TheKeccak {
 
