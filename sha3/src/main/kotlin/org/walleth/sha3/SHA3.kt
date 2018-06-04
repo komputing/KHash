@@ -10,9 +10,9 @@ import java.util.Arrays.fill
 
 private val BIT_64 = BigInteger("18446744073709551615")
 
-fun String.calculateKeccak(parameter: SHA3Parameter) = toByteArray().calculateKeccak(parameter)
+fun String.calculateSHA3(parameter: SHA3Parameter) = toByteArray().calculateSHA3(parameter)
 
-fun ByteArray.calculateKeccak(parameter: SHA3Parameter): ByteArray {
+fun ByteArray.calculateSHA3(parameter: SHA3Parameter): ByteArray {
     val uState = IntArray(200)
     val uMessage = convertToUInt(this)
 
@@ -29,19 +29,19 @@ fun ByteArray.calculateKeccak(parameter: SHA3Parameter): ByteArray {
         inputOffset += blockSize
 
         if (blockSize == parameter.rateInBytes) {
-            doKeccakf(uState)
-            blockSize =0
+            doF(uState)
+            blockSize = 0
         }
     }
 
     // Padding phase
     uState[blockSize] = uState[blockSize] xor parameter.d
     if (parameter.d and 0x80 != 0 && blockSize == parameter.rateInBytes - 1) {
-        doKeccakf(uState)
+        doF(uState)
     }
 
     uState[parameter.rateInBytes - 1] = uState[parameter.rateInBytes - 1] xor 0x80
-    doKeccakf(uState)
+    doF(uState)
 
     // Squeezing phase
     val byteResults = ByteArrayOutputStream()
@@ -54,14 +54,14 @@ fun ByteArray.calculateKeccak(parameter: SHA3Parameter): ByteArray {
 
         tOutputLen -= blockSize
         if (tOutputLen > 0) {
-            doKeccakf(uState)
+            doF(uState)
         }
     }
 
     return byteResults.toByteArray()
 }
 
-private fun doKeccakf(uState: IntArray) {
+private fun doF(uState: IntArray) {
     val lState = Array(5) { Array(5) { ZERO } }
 
     for (i in 0..4) {
