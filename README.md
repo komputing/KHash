@@ -16,7 +16,7 @@ I was using the spongycastle/bouncycastle implementation before. That was workin
 
  * huge footprint
  * as it is java it can only be used in JVM projects and especially for KEthereum I would like to be able to also target other platforms like native, WASM, JS, ..
- 
+
 How
 ===
 
@@ -64,11 +64,19 @@ enum class SHA3Parameter constructor(val rateInBytes: Int,
 }
 ```
 
+Disclaimer
+==========
+
+The results *should* be correct as the Nist test vectors pass and also second degree tests pass in KEthereum. That said there should be more eyes on this project before it is used in really critical situations. If you can spare some time please have a look at the code - feedback is very welcome.
+
+Also this code is not hardened against side channel attacks. Keep this in mind when hashing sensitive content! I would be really happy about input from security researchers here - there is also an [open issue](https://github.com/walleth/sha3/issues/5) with a bounty for this.
+
 Links
 =====
 
  * http://keccak.noekeon.org
  * https://github.com/romus/sha
+ * https://repository.library.northeastern.edu/files/neu:cj82qf503/fulltext.pdf
 
 Projects using this library
 ===========================
