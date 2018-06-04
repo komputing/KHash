@@ -26,11 +26,12 @@ fun ByteArray.calculateKeccak(parameter: Parameter): ByteArray {
             uState[i] = uState[i] xor uMessage[i + inputOffset]
         }
 
+        inputOffset += blockSize
+
         if (blockSize == parameter.rateInBytes) {
             doKeccakf(uState)
+            blockSize =0
         }
-
-        inputOffset += blockSize
     }
 
     // Padding phase

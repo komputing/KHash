@@ -2,11 +2,29 @@ package org.walleth.keccak
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.walleth.keccak.Parameter.KECCAK_256
+import org.walleth.keccak.Parameter.*
 import org.walleth.khex.hexToByteArray
 import org.walleth.khex.toHexString
+import org.walleth.khex.toNoPrefixHexString
 
 class TheKeccak {
+
+    val allNistTestVectors = listOf(
+            testVectors224 to SHA3_224,
+            testVectors256 to SHA3_256,
+            testVectors384 to SHA3_384,
+            testVectors512 to SHA3_512
+    )
+
+    @Test
+    fun testNistVectors() {
+        allNistTestVectors.forEach { vector ->
+            vector.first.forEach { element->
+                assertThat(element.first.hexToByteArray().calculateKeccak(vector.second).toNoPrefixHexString())
+                        .isEqualTo(element.second)
+            }
+        }
+    }
 
     @Test
     fun keccak256hashesAreCorrect() {
