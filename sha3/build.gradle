@@ -7,7 +7,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "com.github.walleth:khex:0.6"
 
-    testImplementation 'org.assertj:assertj-core:3.10.0'
+    testImplementation 'org.assertj:assertj-core:3.11.0'
     testImplementation 'junit:junit:4.12'
 }
 
