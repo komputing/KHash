@@ -152,9 +152,11 @@ private fun roundB(state: Array<Array<BigInteger>>) {
 }
 
 
-internal fun String.fillWithZero(fillLength: Int) = this + "0".repeat(Math.max(fillLength - this.length, 0))
+internal fun String.fillWithZero(fillLength: Int) = plus("0".repeat(Math.max(fillLength - length, 0)))
 
-private fun convertToUInt(data: ByteArray) = IntArray(data.size, { data[it].toInt() and 0xFF })
+private fun convertToUInt(data: ByteArray) = IntArray(data.size) {
+    data[it].toInt() and 0xFF
+}
 
 internal fun convertFromLittleEndianTo64(data: IntArray) =
         BigInteger(data.map { Integer.toString(it, 16) }
