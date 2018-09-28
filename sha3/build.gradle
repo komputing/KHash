@@ -1,6 +1,8 @@
 apply plugin: 'kotlin'
 apply plugin: 'maven'
 apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'witness'
+apply from: 'witness.gradle'
 
 dependencies {
 

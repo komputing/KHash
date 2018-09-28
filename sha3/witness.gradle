@@ -1,0 +1,15 @@
+dependencyVerification {
+    verify = [
+        'com.github.walleth:khex:0.6:khex-0.6.jar:ffa8f099f38e6f14a3ede09ad2e75389ce96a2b93fbc4578c5f8eda43c15eb8d',
+        'junit:junit:4.12:junit-4.12.jar:59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a',
+        'org.assertj:assertj-core:3.11.1:assertj-core-3.11.1.jar:2ee2bd3e81fc818d423d442b658f28acf938d9078d6ba016a64b362fdd7779e8',
+        'org.hamcrest:hamcrest-core:1.3:hamcrest-core-1.3.jar:66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9',
+        'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.2.71:kotlin-compiler-embeddable-1.2.71.jar:623e546310d3da89ed2bc0cf9f7fedd78fadd9cd65d2ff798fa894c14e527665',
+        'org.jetbrains.kotlin:kotlin-reflect:1.2.71:kotlin-reflect-1.2.71.jar:1f3e10abd68d0b0816bddab7314f61269e01d8aa2ca1cbd120c12d3b4dc94b0f',
+        'org.jetbrains.kotlin:kotlin-script-runtime:1.2.71:kotlin-script-runtime-1.2.71.jar:307d0a56734458a5e57e3ea788c15b22591912ba39f81b2cc8b0a090944012bb',
+        'org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:1.2.71:kotlin-scripting-compiler-embeddable-1.2.71.jar:97a5d94241d13719ea756a908262a10c638db7a8caaa23b28537b1687f894f0c',
+        'org.jetbrains.kotlin:kotlin-stdlib-common:1.2.71:kotlin-stdlib-common-1.2.71.jar:63999687ff2fce8a592dd180ffbbf8f1d21c26b4044c55cdc74ff3cf3b3cf328',
+        'org.jetbrains.kotlin:kotlin-stdlib:1.2.71:kotlin-stdlib-1.2.71.jar:4c895c270b87f5fec2a2796e1d89c15407ee821de961527c28588bb46afbc68b',
+        'org.jetbrains:annotations:13.0:annotations-13.0.jar:ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478',
+    ]
+}
