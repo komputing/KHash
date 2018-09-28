@@ -12,10 +12,10 @@ Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Crypto
 Why
 ===
 
-I was using the spongycastle/bouncycastle implementation before. That was working but had 2 major drawbacks:
+I was using the implementation from [spongycastle](https://rtyley.github.io/spongycastle)/[bouncycastle](http://www.bouncycastle.org) before. That was working but had 2 major drawbacks:
 
- * huge footprint
- * as it is java it can only be used in JVM projects and especially for KEthereum I would like to be able to also target other platforms like native, WASM, JS, ..
+ * significant footprint
+ * as they are written Java - they can only be used in JVM projects and especially for KEthereum I wanted to be able to also target other platforms in the future like native, WASM, JS, ..
 
 How
 ===
