@@ -168,11 +168,11 @@ internal fun convertFromLittleEndianTo64(data: IntArray) =
 private fun convertFrom64ToLittleEndian(uLong: BigInteger): IntArray {
     val asHex = uLong.toString(16)
     val asHexPadded = "0".repeat((8 * 2) - asHex.length) + asHex
-    return IntArray(8, {
+    return IntArray(8) {
         ((7 - it) * 2).let {
             Integer.parseInt(asHexPadded.substring(it, it + 2), 16)
         }
-    })
+    }
 }
 
 
