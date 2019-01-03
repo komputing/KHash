@@ -8,7 +8,8 @@ import java.math.BigInteger.ONE
 import java.math.BigInteger.ZERO
 import java.util.Arrays.fill
 
-private val BIT_64 = BigInteger("18446744073709551615")
+private val BIT_65 = ONE.shiftLeft(64)
+private val MAX_64_BITS = BIT_65.minus(ONE)
 
 fun String.calculateSHA3(parameter: SHA3Parameter) = toByteArray().calculateSHA3(parameter)
 
@@ -133,7 +134,7 @@ private fun roundB(state: Array<Array<BigInteger>>) {
 
             for (i in 0..4) {
                 // ~t[(i + 1) % 5]
-                val invertVal = t[(i + 1) % 5]!!.xor(BIT_64)
+                val invertVal = t[(i + 1) % 5]!!.xor(MAX_64_BITS)
                 // t[i] ^ ((~t[(i + 1) % 5]) & t[(i + 2) % 5])
                 state[i][j] = t[i]!!.xor(invertVal.and(t[(i + 2) % 5]))
             }
@@ -182,5 +183,5 @@ private fun BigInteger.leftRotate64(rotate: Int): BigInteger {
     val lp = shiftRight(64 - rotate)
     val rp = shiftLeft(rotate)
 
-    return lp.add(rp).mod(BigInteger("18446744073709551616"))
+    return lp.add(rp).mod(BIT_65)
 }
