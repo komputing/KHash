@@ -179,9 +179,6 @@ private fun convertFrom64ToLittleEndian(uLong: BigInteger): IntArray {
 
 private fun BigInteger.leftRotate64Safely(rotate: Int) = leftRotate64(rotate % 64)
 
-private fun BigInteger.leftRotate64(rotate: Int): BigInteger {
-    val lp = shiftRight(64 - rotate)
-    val rp = shiftLeft(rotate)
-
-    return lp.add(rp).mod(BIT_65)
-}
+private fun BigInteger.leftRotate64(rotate: Int) = shiftRight(64 - rotate)
+        .add(shiftLeft(rotate))
+        .mod(BIT_65)
