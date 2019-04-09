@@ -37,13 +37,11 @@ class ByteArrayExtensionsTests {
     }
 
     @Test
-    fun sha256CallsProperMethod() {
-        val input = byteArrayOf(1, 2, 3)
+    fun sha256CallsProperMethod() = mockkObject(Sha256) {
         val output = byteArrayOf(3, 2, 1)
-
-        mockkObject(Sha256)
         every { Sha256.digest(any()) } returns output
 
+        val input = byteArrayOf(1, 2, 3)
         val result = input.sha256()
         assertTrue(output.contentEquals(result))
     }
