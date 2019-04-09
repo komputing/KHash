@@ -3,16 +3,23 @@
 SHA3
 ====
 
-Kotlin SHA3 implementation. Also supports Keccak and Shake.
+KHash is a [Kotlin multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html) library implementing 
+some of the most common hashing functions used while working with cryptocurrencies of any sort.
 
-Heavily based on this java implementation: [@romus/sha](https://github.com/romus/sha)
+A part from that, it also provides some useful [extensions functions](https://kotlinlang.org/docs/reference/extensions.html).
 
-Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
+The implemented hashing functions are the following. 
+* [RIPEMD160](https://en.wikipedia.org/wiki/RIPEMD)
+* [SHA-256](https://en.wikipedia.org/wiki/SHA-2) 
+   - Heavily based on this java implementation: [@romus/sha](https://github.com/romus/sha)
+   - Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
+* [Keccak](https://en.wikipedia.org/wiki/SHA-3)
+
 
 Why
 ===
 
-I was using the implementation from [spongycastle](https://rtyley.github.io/spongycastle)/[bouncycastle](http://www.bouncycastle.org) before. That was working but had 2 major drawbacks:
+I was using the implementation from [spongycastle](https://rtyley.github.io/spongycastle) / [bouncycastle](http://www.bouncycastle.org) before. That was working but had 2 major drawbacks:
 
  * significant footprint
  * as they are written Java - they can only be used in JVM projects and especially for KEthereum I wanted to be able to also target other platforms in the future like native, WASM, JS, ..
@@ -20,48 +27,83 @@ I was using the implementation from [spongycastle](https://rtyley.github.io/spon
 How
 ===
 
+## Usage
+### `extensions`
+Module containing all the useful extension functions that are commonly used while dealing with cryptocurrencies.
 ```kotlin
-import org.walleth.sha3.SHA3Parameter
-import org.walleth.sha3.calculateSHA3
+// Convert a single Byte to its HEX representation
+1.toByte().toHexString()  
 
-val hash = "hello world".calculateSHA3(SHA3Parameter.KECCAK_256)
-```
-The hash will be a ```ByteArray```
+// Convert a ByteArray into its HEX representation, with a prefix
+byteArrayOf(1, 2, 3).toHexString(prefix = "0x")
 
-There is also an extension function that operates on a ```ByteArray```. This is also the core function:
+// Convert a ByteArray into its HEX representation, without any prefix
+byteArrayOf(1, 2, 3).toNoPrefixHexString()
 
-```kotlin
-fun ByteArray.calculateSHA3(parameter: SHA3Parameter): ByteArray {
-   ...
-}
-```
-
-The "hello world" example above just uses the extension function from this library that converts the String to a ByteArray before.
-
-```kotlin
-fun String.calculateSHA3(parameter: SHA3Parameter) = toByteArray().calculateSHA3(parameter)
+// Convert a HEX string into it's byte representation
+"0f56e912a00c".hexToByteArray()
 ```
 
-These are the parameters you can use:
 
+### `keccak`
+Module containing the implementation of the Kecccak hashing algorithms.  
+
+#### Object usage
 ```kotlin
-enum class SHA3Parameter constructor(val rateInBytes: Int,
-                                     val outputLengthInBytes: Int,
-                                     val d: Int) {
+// Compute the Keccak digest of a byte array based on the given parameter
+Keccak.digest(byteArrayOf(1, 2, 3), KeccakParameter.KECCAK_512) 
+Keccak.digest(byteArrayOf(1, 2, 3), KeccakParameter.SHA3_224) 
+Keccak.digest(byteArrayOf(1, 2, 3), KeccakParameter.SHAKE_128) 
+```
 
-    KECCAK_224(144, 28, 0x01),
-    KECCAK_256(136, 32, 0x01),
-    KECCAK_384(104, 48, 0x01),
-    KECCAK_512(72, 64, 0x01),
+#### Extension functions
+```kotlin
+// Compute a specific Keccak digest of a byte array based on the given parameter
+byteArrayOf(1, 2, 3).digestKeccak(KeccakParameter.KECCAK_512)
 
-    SHA3_224(144, 28, 0x06),
-    SHA3_256(136, 32, 0x06),
-    SHA3_384(104, 48, 0x06),
-    SHA3_512(72, 64, 0x06),
+// Compute a specific Keccak digest of a string based on the given parameter
+"The quick brown fox jumps over the lazy dog".digestKeccak(parameter = KeccakParameter.SHA3_384)
+```
 
-    SHAKE128(168, 32, 0x1F),
-    SHAKE256(136, 64, 0x1F)
-}
+### `ripemd160`
+Module containing the implementation of the RIPEMD160 hashing algorithms.  
+
+#### Object usage
+```kotlin
+// Compute the RIPEMD160 digest of a byte array
+val input = byteArrayOf(1, 2, 3)
+val output = ByteArray(Ripemd160Digest.DIGEST_LENGTH)
+Ripemd160Digest().apply {
+  update(input, 0, input.size)
+  doFinal(output, 0)
+} 
+```
+
+#### Extension functions
+```kotlin
+// Compute the RIPEMD160 digest of a byte array
+byteArrayOf(1, 2, 3).ripemd160()
+
+// Compute the RIPEMD160 digest of a string
+"The quick brown fox jumps over the lazy dog".ripemd160()
+```
+
+### `sha256`
+Module containing the implementation of the RIPEMD160 hashing algorithms.  
+
+#### Object usage
+```kotlin
+// Compute the SHA-256 digest of a byte array 
+Sha256.digest(byteArrayOf(1, 2, 3))
+```
+
+#### Extension functions
+```kotlin
+// Compute the SHA-256 digest of a byte array
+byteArrayOf(1, 2, 3).sha256()
+
+// Compute the SHA-256 digest of a string
+"The quick brown fox jumps over the lazy dog".sha256()
 ```
 
 Disclaimer

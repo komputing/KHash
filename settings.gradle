@@ -1,4 +1,4 @@
-rootProject.name = 'khashing'
+rootProject.name = 'khash'
 enableFeaturePreview('GRADLE_METADATA')
 
 def includeEx(String name) {

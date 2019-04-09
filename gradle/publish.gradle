@@ -1,3 +1,4 @@
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 apply from: project.rootProject.file('gradle/pom.gradle')
@@ -13,13 +14,40 @@ task stubDokka(type: Jar) {
     classifier 'kdoc'
 }
 
+def selectArtifactId(project, type, defaultName) {
+    def name = project.name
+    switch (type) {
+        case 'metadata':
+            return "$name-common"
+            break
+        case 'kotlinMultiplatform':
+            return "$name-native"
+            break
+        case 'jvm':
+            return "$name"
+            break
+        default:
+            return defaultName
+            break
+    }
+}
+
+def isAvailableForPublication(publication) {
+    def name = publication.name
+    return name in ['jvm', 'js', 'metadata', 'kotlinMultiplatform']
+}
+
+tasks.withType(AbstractPublishToMaven).all {
+    onlyIf { isAvailableForPublication(publication) }
+}
+
 publishing {
     repositories {
         maven {
             if (publishLocal) {
                 url globalM2
             } else {
-                def user = 'komputin'
+                def user = 'komputing'
                 def repo = 'khash'
                 def name = 'khash'
                 url = "https://api.bintray.com/maven/$user/$repo/$name/;publish=0"
@@ -27,13 +55,23 @@ publishing {
                     username = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
                     password = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
                 }
-                
+
             }
         }
         maven { name = "testLocal"; url = "$rootProject.buildDir/m2" }
     }
     publications.all {
         pom.withXml(configureMavenCentralMetadata)
+
+        def type = it.name
+        def id = selectArtifactId(project, type, it.artifactId)
+        it.artifactId = id
+
+        if (id.endsWith('native')) {
+            it.artifact stubJavadoc
+            it.artifact stubDokka
+            it.artifact emptyJar
+        }
     }
     kotlin.targets.all { target ->
         def publication = publishing.publications.findByName(target.name)
