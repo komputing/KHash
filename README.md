@@ -11,9 +11,9 @@ A part from that, it also provides some useful [extensions functions](https://ko
 The implemented hashing functions are the following. 
 * [RIPEMD160](https://en.wikipedia.org/wiki/RIPEMD)
 * [SHA-256](https://en.wikipedia.org/wiki/SHA-2) 
+* [Keccak](https://en.wikipedia.org/wiki/SHA-3)
    - Heavily based on this java implementation: [@romus/sha](https://github.com/romus/sha)
    - Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
-* [Keccak](https://en.wikipedia.org/wiki/SHA-3)
 
 
 Why
