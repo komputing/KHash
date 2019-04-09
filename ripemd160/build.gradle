@@ -1,0 +1,5 @@
+kotlin.sourceSets {
+    commonTest.dependencies {
+        api project(":extensions")
+    }
+}

@@ -1,1 +1,12 @@
-include ':sha3'
+rootProject.name = 'khashing'
+enableFeaturePreview('GRADLE_METADATA')
+
+def includeEx(String name) {
+    include name
+    project(name).projectDir = "$rootDir${name.replace(':', '/')}" as File
+}
+
+includeEx ':extensions'
+includeEx ':keccak'
+includeEx ':sha3'
+includeEx ':ripemd160'

@@ -1,0 +1,9 @@
+kotlin.sourceSets {
+    commonMain.dependencies {
+        api project(":extensions")
+        api "org.kbignumbers:kbignumbers:$kbignumbers_version"
+    }
+    jvmMain.dependencies {
+        api "org.kbignumbers:kbignumbers-jvm:$kbignumbers_version"
+    }
+}
