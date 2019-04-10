@@ -6,7 +6,7 @@ def includeEx(String name) {
     project(name).projectDir = "$rootDir${name.replace(':', '/')}" as File
 }
 
-includeEx ':extensions'
 includeEx ':keccak'
+includeEx ':khash-extensions'
 includeEx ':sha256'
 includeEx ':ripemd160'
