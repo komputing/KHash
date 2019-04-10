@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/walleth/sha3.svg)](https://jitpack.io/#walleth/sha3)
+[![](https://jitpack.io/v/komputing/KHash.svg)](https://jitpack.io/#komputing/KHash)
 
 # KHash
 
@@ -94,7 +94,7 @@ byteArrayOf(1, 2, 3).ripemd160()
 ```
 
 ### `sha256`
-Module containing the implementation of the RIPEMD160 hashing algorithms.  
+Module containing the implementation of the SHA256 hashing algorithms.  
 
 #### Object usage
 ```kotlin
@@ -123,7 +123,7 @@ Also this code is not hardened against side channel attacks. Keep this in mind w
 
 # Projects using this library
  * [WallETH - Android Ethereum Wallet](https://walleth.org)
- * [KEthereum - Kotlin Ethereum library](https://github.com/walleth/kethereum)
+ * [KEthereum - Kotlin Ethereum library](https://github.com/komputing/KEthereum)
 
 # License
 MIT
