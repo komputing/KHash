@@ -8,5 +8,5 @@ def includeEx(String name) {
 
 includeEx ':extensions'
 includeEx ':keccak'
-includeEx ':sha3'
+includeEx ':sha256'
 includeEx ':ripemd160'

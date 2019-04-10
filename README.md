@@ -1,7 +1,6 @@
 [![](https://jitpack.io/v/walleth/sha3.svg)](https://jitpack.io/#walleth/sha3)
 
-SHA3
-====
+# KHash
 
 KHash is a [Kotlin multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html) library implementing 
 some of the most common hashing functions used while working with cryptocurrencies of any sort.
@@ -15,18 +14,24 @@ The implemented hashing functions are the following.
    - Heavily based on this java implementation: [@romus/sha](https://github.com/romus/sha)
    - Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
 
+## Supported platforms
+| Platform | Supported |
+| :------- | :-------: |
+| `common` | Yes | 
+| `jvm` | Yes | 
+| `js` | No |
+| `native` | No |
 
-Why
-===
+Any Pull Request implementing the missing platforms is more than welcome! 
+
+# Why
 
 I was using the implementation from [spongycastle](https://rtyley.github.io/spongycastle) / [bouncycastle](http://www.bouncycastle.org) before. That was working but had 2 major drawbacks:
 
  * significant footprint
  * as they are written Java - they can only be used in JVM projects and especially for KEthereum I wanted to be able to also target other platforms in the future like native, WASM, JS, ..
 
-How
-===
-
+# How
 ## Usage
 ### `extensions`
 Module containing all the useful extension functions that are commonly used while dealing with cryptocurrencies.
@@ -106,27 +111,19 @@ byteArrayOf(1, 2, 3).sha256()
 "The quick brown fox jumps over the lazy dog".sha256()
 ```
 
-Disclaimer
-==========
-
+# Disclaimer
 The results *should* be correct as the Nist test vectors pass and also second degree tests pass in KEthereum. That said there should be more eyes on this project before it is used in really critical situations. If you can spare some time please have a look at the code - feedback is very welcome.
 
 Also this code is not hardened against side channel attacks. Keep this in mind when hashing sensitive content! I would be really happy about input from security researchers here - there is also an [open issue](https://github.com/walleth/sha3/issues/5) with a bounty for this.
 
-Links
-=====
-
+# Links
  * http://keccak.noekeon.org
  * https://github.com/romus/sha
  * https://repository.library.northeastern.edu/files/neu:cj82qf503/fulltext.pdf
 
-Projects using this library
-===========================
-
+# Projects using this library
  * [WallETH - Android Ethereum Wallet](https://walleth.org)
  * [KEthereum - Kotlin Ethereum library](https://github.com/walleth/kethereum)
 
-License
-=======
-
+# License
 MIT
