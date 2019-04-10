@@ -1,6 +1,6 @@
-[![](https://jitpack.io/v/walleth/sha3.svg)](https://jitpack.io/#walleth/sha3)
+[![](https://jitpack.io/v/komputing/KHash.svg)](https://jitpack.io/#komputing/KHash)
 
-SHA3
+KHash
 ====
 
 KHash is a [Kotlin multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html) library implementing 
@@ -89,7 +89,7 @@ byteArrayOf(1, 2, 3).ripemd160()
 ```
 
 ### `sha256`
-Module containing the implementation of the RIPEMD160 hashing algorithms.  
+Module containing the implementation of the SHA256 hashing algorithms.  
 
 #### Object usage
 ```kotlin
@@ -124,7 +124,7 @@ Projects using this library
 ===========================
 
  * [WallETH - Android Ethereum Wallet](https://walleth.org)
- * [KEthereum - Kotlin Ethereum library](https://github.com/walleth/kethereum)
+ * [KEthereum - Kotlin Ethereum library](https://github.com/komputing/KEthereum)
 
 License
 =======
