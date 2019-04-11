@@ -15,12 +15,12 @@ The implemented hashing functions are the following.
    - Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
 
 ## Supported platforms
-| Platform | Supported |
+| Module | Supported platforms |
 | :------- | :-------: |
-| `common` | Yes | 
-| `jvm` | Yes | 
-| `js` | No |
-| `native` | No |
+| `keccak` | `common`, `jvm` | 
+| `khash-extensions` | `common`, `jvm` | 
+| `ripemd160` | `common`, `jvm`, `js`, `native` |
+| `sha256` | `common`, `jvm`, `js`, `native` |
 
 Any Pull Request implementing the missing platforms is more than welcome! 
 
