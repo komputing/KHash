@@ -17,7 +17,7 @@ The implemented hashing functions are the following.
 ## Supported platforms
 | Module | Supported platforms |
 | :------- | :-------: |
-| `keccak` | `common`, `jvm` | 
+| `keccak` | `common`, `jvm`, `js`, `native` | 
 | `khash-extensions` | `common`, `jvm` | 
 | `ripemd160` | `common`, `jvm`, `js`, `native` |
 | `sha256` | `common`, `jvm`, `js`, `native` |

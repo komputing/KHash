@@ -2,7 +2,6 @@ package org.komputing.khash.keccak
 
 import kbignumbers.biginteger.BigInteger
 import org.komputing.khash.keccak.extensions.fillWith
-import org.komputing.khash.keccak.extensions.parseInt
 import kotlin.math.min
 
 object Keccak {
@@ -173,7 +172,7 @@ object Keccak {
         val asHexPadded = "0".repeat((8 * 2) - asHex.length) + asHex
         return IntArray(8) {
             ((7 - it) * 2).let { pos ->
-                asHexPadded.substring(pos, pos + 2).parseInt(16)
+                asHexPadded.substring(pos, pos + 2).toInt(16)
             }
         }
     }
