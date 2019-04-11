@@ -1,6 +1,6 @@
 kotlin.sourceSets {
     commonMain.dependencies {
-        api project(":extensions")
+        api project(":khash-extensions")
         api "org.kbignumbers:kbignumbers:$kbignumbers_version"
     }
     jvmMain.dependencies {

@@ -1,5 +1,5 @@
 kotlin.sourceSets {
     commonTest.dependencies {
-        api project(":extensions")
+        api project(":khash-extensions")
     }
 }
