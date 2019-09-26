@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/komputing/KHash.svg)](https://jitpack.io/#komputing/KHash)
+[![](https://jitpack.io/v/komputing/khash.svg)](https://jitpack.io/#komputing/khash)
 
 # KHash
 
