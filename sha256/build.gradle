@@ -1,12 +1,21 @@
-apply plugin: 'kotlinx-serialization'
+apply plugin: "kotlin"
 
-kotlin.sourceSets {
-    commonMain.dependencies {
-    }
-    commonTest.dependencies {
-        api "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
-    }
-    jvmTest.dependencies {
-        api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    testCompile "org.junit.jupiter:junit-jupiter-api:$jupiter_version"
+    testCompile "org.junit.jupiter:junit-jupiter-params:$jupiter_version"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:$jupiter_version"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+
+    testImplementation "com.github.komputing:khex:0.6"
+}
+
+test {
+    useJUnitPlatform()
+    reports {
+        html.enabled = true
     }
 }

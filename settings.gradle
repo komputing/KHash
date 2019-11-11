@@ -1,12 +1,3 @@
-rootProject.name = 'khash'
-enableFeaturePreview('GRADLE_METADATA')
-
-def includeEx(String name) {
-    include name
-    project(name).projectDir = "$rootDir${name.replace(':', '/')}" as File
-}
-
-includeEx ':keccak'
-includeEx ':khash-extensions'
-includeEx ':sha256'
-includeEx ':ripemd160'
+include ':keccak'
+include ':sha256'
+include ':ripemd160'

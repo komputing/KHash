@@ -2,8 +2,7 @@
 
 # KHash
 
-KHash is a [Kotlin multiplatform](https://kotlinlang.org/docs/reference/multiplatform.html) library implementing 
-some of the most common hashing functions used while working with cryptocurrencies of any sort.
+KHash is a Kotlin library implementing common hashing functions.
 
 A part from that, it also provides some useful [extensions functions](https://kotlinlang.org/docs/reference/extensions.html).
 
@@ -14,42 +13,8 @@ The implemented hashing functions are the following.
    - Heavily based on this java implementation: [@romus/sha](https://github.com/romus/sha)
    - Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
 
-## Supported platforms
-| Module | Supported platforms |
-| :------- | :-------: |
-| `keccak` | `common`, `jvm`, `js`, `native` | 
-| `khash-extensions` | `common`, `jvm` | 
-| `ripemd160` | `common`, `jvm`, `js`, `native` |
-| `sha256` | `common`, `jvm`, `js`, `native` |
 
-Any Pull Request implementing the missing platforms is more than welcome! 
-
-# Why
-
-I was using the implementation from [spongycastle](https://rtyley.github.io/spongycastle) / [bouncycastle](http://www.bouncycastle.org) before. That was working but had 2 major drawbacks:
-
- * significant footprint
- * as they are written Java - they can only be used in JVM projects and especially for KEthereum I wanted to be able to also target other platforms in the future like native, WASM, JS, ..
-
-# How
 ## Usage
-### `extensions`
-Module containing all the useful extension functions that are commonly used while dealing with cryptocurrencies.
-```kotlin
-// Convert a single Byte to its HEX representation
-1.toByte().toHexString()  
-
-// Convert a ByteArray into its HEX representation, with a prefix
-byteArrayOf(1, 2, 3).toHexString(prefix = "0x")
-
-// Convert a ByteArray into its HEX representation, without any prefix
-byteArrayOf(1, 2, 3).toNoPrefixHexString()
-
-// Convert a HEX string into it's byte representation
-"0f56e912a00c".hexToByteArray()
-```
-
-
 ### `keccak`
 Module containing the implementation of the Kecccak hashing algorithms.  
 
