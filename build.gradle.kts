@@ -1,6 +1,5 @@
 plugins {
     id("com.github.ben-manes.versions").version(Versions.versions_plugin)
-    maven
 }
 
 buildscript {
@@ -22,6 +21,7 @@ subprojects {
     group = "org.komputing"
 
     plugins.apply("kotlin")
+    plugins.apply("maven")
 
     dependencies {
         "implementation"("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
