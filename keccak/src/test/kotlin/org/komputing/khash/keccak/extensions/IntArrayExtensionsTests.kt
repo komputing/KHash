@@ -1,7 +1,7 @@
 package org.komputing.khash.keccak.extensions
 
-import kotlin.test.Test
-import kotlin.test.assertTrue
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
 /**
  * Tests for the extensions functions present inside `IntArrayExtensions.kt`

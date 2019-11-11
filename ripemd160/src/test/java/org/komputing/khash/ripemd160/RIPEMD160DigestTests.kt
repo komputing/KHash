@@ -1,9 +1,9 @@
 package org.komputing.khash.ripemd160
 
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import org.komputing.khash.ripemd160.extensions.digestRipemd160
 import org.walleth.khex.hexToByteArray
-import kotlin.test.Test
-import kotlin.test.assertTrue
 
 class RIPEMD160DigestTests {
 
