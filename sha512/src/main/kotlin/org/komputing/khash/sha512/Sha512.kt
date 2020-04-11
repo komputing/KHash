@@ -129,8 +129,10 @@ object Sha512 {
     private fun padMessage(input: ByteArray): ByteArray {
         // Need to append at least 17 bytes (16 for length of the message, and 1 for the '1' bit)
         // then fill with 0s until multiple of 128 bytes
-        val size = (input.size + 17).let {
-            if (it % 128 == 0) it else it + 128 - it % 128
+        val size = (input.size + 17).let { padded_input ->
+            (padded_input % 128).let { remainder ->
+                if (remainder == 0) padded_input else padded_input + 128 - remainder
+            }
         }
 
         val len = input.size * 8L
