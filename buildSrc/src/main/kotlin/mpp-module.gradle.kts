@@ -1,4 +1,7 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 
 plugins {
     kotlin("multiplatform")
@@ -43,6 +46,30 @@ kotlin {
             .forEach {
                 it.languageSettings.enableLanguageFeature("InlineClasses")
             }
+    }
+}
+
+tasks {
+    named<Test>("jvmTest") {
+        filter {
+            isFailOnNoMatchingTests = false
+        }
+        testLogging {
+            events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+            showExceptions = true
+            exceptionFormat = TestExceptionFormat.FULL
+        }
+    }
+
+    listOf("Legacy", "Ir").forEach { jsCompiler ->
+
+        named<KotlinJsTest>("js${jsCompiler}NodeTest") {
+            testLogging {
+                events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+                showExceptions = true
+                exceptionFormat = TestExceptionFormat.FULL
+            }
+        }
     }
 }
 
