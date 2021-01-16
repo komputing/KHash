@@ -24,6 +24,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation("com.github.komputing:khex:1.0.0")
             }
         }
 
