@@ -1,6 +1,6 @@
-plugins {
-    id("com.github.ben-manes.versions").version(Versions.versions_plugin)
-}
+//plugins {
+//    id("com.github.ben-manes.versions").version(Versions.versions_plugin)
+//}
 
 buildscript {
     repositories {
@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.github.ben-manes:gradle-versions-plugin:${Versions.versions_plugin}")
+        //classpath("com.github.ben-manes:gradle-versions-plugin:${Versions.versions_plugin}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
     }
 }
