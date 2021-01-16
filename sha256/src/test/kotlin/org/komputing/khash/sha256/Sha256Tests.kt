@@ -3,7 +3,8 @@ package org.komputing.khash.sha256
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.walleth.khex.hexToByteArray
+import org.komputing.khex.extensions.hexToByteArray
+import org.komputing.khex.model.HexString
 
 class Sha256Tests {
 
@@ -19,7 +20,7 @@ class Sha256Tests {
 
     private fun testHash(input: String, expected: String) {
         val inputArray = input.toByteArray()
-        val expectedOutput = expected.hexToByteArray()
+        val expectedOutput = HexString(expected).hexToByteArray()
         assertTrue(expectedOutput.contentEquals(Sha256.digest(inputArray)))
     }
 
@@ -29,7 +30,7 @@ class Sha256Tests {
             b[i] = i.toByte()
         }
 
-        val expected = "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880".hexToByteArray()
+        val expected = HexString("40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880").hexToByteArray()
         assertTrue(expected.contentEquals(Sha256.digest(b)))
     }
 

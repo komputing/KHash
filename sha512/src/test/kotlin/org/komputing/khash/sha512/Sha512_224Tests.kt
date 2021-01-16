@@ -2,7 +2,7 @@ package org.komputing.khash.sha512
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.walleth.khex.toNoPrefixHexString
+import org.komputing.khex.extensions.toNoPrefixHexString
 
 class Sha512_224Tests {
 

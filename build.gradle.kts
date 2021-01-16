@@ -32,7 +32,7 @@ subprojects {
 
         "testImplementation"("org.jetbrains.kotlin:kotlin-test")
 
-        "testImplementation"("com.github.komputing:khex:0.6")
+        "testImplementation"("com.github.komputing:khex:1.0.0")
     }
 
     tasks.withType<Test> {

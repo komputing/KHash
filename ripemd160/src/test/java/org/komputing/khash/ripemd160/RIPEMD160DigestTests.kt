@@ -3,7 +3,8 @@ package org.komputing.khash.ripemd160
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.komputing.khash.ripemd160.extensions.digestRipemd160
-import org.walleth.khex.hexToByteArray
+import org.komputing.khex.extensions.hexToByteArray
+import org.komputing.khex.model.HexString
 
 class RIPEMD160DigestTests {
 
@@ -23,14 +24,14 @@ class RIPEMD160DigestTests {
     @Test
     fun testStringInput() {
         testVectors.forEach { (message, expectedDigest) ->
-            assertTrue(message.digestRipemd160().contentEquals(expectedDigest.hexToByteArray()))
+            assertTrue(message.digestRipemd160().contentEquals(HexString(expectedDigest).hexToByteArray()))
         }
     }
 
     @Test
     fun testByteArrayInput() {
         testVectors.forEach { (message, expectedDigest) ->
-            assertTrue(message.toByteArray().digestRipemd160().contentEquals(expectedDigest.hexToByteArray()))
+            assertTrue(message.toByteArray().digestRipemd160().contentEquals(HexString(expectedDigest).hexToByteArray()))
         }
     }
 }
