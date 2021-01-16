@@ -39,9 +39,10 @@ kotlin {
                 implementation(kotlin("test-js"))
             }
         }
-        all {
-            languageSettings.enableLanguageFeature("InlineClasses")
-        }
+        matching { it.name.contains("test", ignoreCase = true) }
+            .forEach {
+                it.languageSettings.enableLanguageFeature("InlineClasses")
+            }
     }
 }
 
