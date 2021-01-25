@@ -1,13 +1,13 @@
 package org.komputing.khash.keccak
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import org.komputing.khash.keccak.extensions.digestKeccak
 import org.komputing.khex.extensions.hexToByteArray
 import org.komputing.khex.extensions.toHexString
 import org.komputing.khex.extensions.toNoPrefixHexString
 import org.komputing.khex.model.HexString
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * Tests the [Keccak.digest] method against the NIST test vectors.

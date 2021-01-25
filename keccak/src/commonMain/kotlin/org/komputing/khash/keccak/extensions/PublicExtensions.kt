@@ -14,5 +14,5 @@ fun ByteArray.digestKeccak(parameter: KeccakParameter): ByteArray {
  * Computes the proper Keccak digest of [this] string based on the given [parameter]
  */
 fun String.digestKeccak(parameter: KeccakParameter): ByteArray {
-    return Keccak.digest(toByteArray(), parameter)
+    return Keccak.digest(encodeToByteArray(), parameter)
 }

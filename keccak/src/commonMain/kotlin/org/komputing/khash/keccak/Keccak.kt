@@ -1,13 +1,13 @@
 package org.komputing.khash.keccak
 
+import com.ionspin.kotlin.bignum.integer.BigInteger
 import org.komputing.khash.keccak.extensions.fillWith
-import java.math.BigInteger
 import kotlin.math.min
 
 object Keccak {
 
-    private val BIT_65 = BigInteger.ONE.shiftLeft(64)
-    private val MAX_64_BITS = BIT_65.subtract(BigInteger.ONE)
+    private val BIT_65 = BigInteger.ONE shl (64)
+    private val MAX_64_BITS = BIT_65 - BigInteger.ONE
 
     fun digest(value: ByteArray, parameter: KeccakParameter): ByteArray {
         val uState = IntArray(200)
@@ -140,7 +140,7 @@ object Keccak {
                 // pow(2, i) - 1
                 val bitPosition = (1 shl i) - 1
                 if (lfsrState and 2 != 0) {
-                    state[0][0] = state[0][0].xor(BigInteger.ONE.shiftLeft(bitPosition))
+                    state[0][0] = state[0][0].xor(BigInteger.ONE shl bitPosition)
                 }
             }
         }
@@ -161,7 +161,7 @@ object Keccak {
             .map { if (it.length == 2) it else "0$it" }
             .reversed()
             .joinToString("")
-        return BigInteger(value, 16)
+        return BigInteger.parseString(value, 16)
     }
 
     /**
@@ -179,5 +179,5 @@ object Keccak {
 
     private fun BigInteger.leftRotate64Safely(rotate: Int) = leftRotate64(rotate % 64)
 
-    private fun BigInteger.leftRotate64(rotate: Int) = shiftRight(64 - rotate).add(shiftLeft(rotate)).mod(BIT_65)
+    private fun BigInteger.leftRotate64(rotate: Int) = (this shr (64 - rotate)).add(this shl rotate).mod(BIT_65)
 }
