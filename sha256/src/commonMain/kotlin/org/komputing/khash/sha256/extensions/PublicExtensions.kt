@@ -10,4 +10,4 @@ fun ByteArray.sha256() = Sha256.digest(this)
 /**
  * Returns the SHA256 digest of this string.
  */
-fun String.sha256() = this.toByteArray(Charsets.UTF_8).sha256()
+fun String.sha256() = this.encodeToByteArray().sha256()

@@ -1,6 +1,6 @@
 package org.komputing.khash.sha256.extensions
 
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 

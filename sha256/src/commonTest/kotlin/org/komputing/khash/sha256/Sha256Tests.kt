@@ -1,10 +1,10 @@
 package org.komputing.khash.sha256
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import org.komputing.khex.extensions.hexToByteArray
 import org.komputing.khex.model.HexString
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class Sha256Tests {
 
@@ -19,7 +19,7 @@ class Sha256Tests {
     }
 
     private fun testHash(input: String, expected: String) {
-        val inputArray = input.toByteArray()
+        val inputArray = input.encodeToByteArray()
         val expectedOutput = HexString(expected).hexToByteArray()
         assertTrue(expectedOutput.contentEquals(Sha256.digest(inputArray)))
     }
