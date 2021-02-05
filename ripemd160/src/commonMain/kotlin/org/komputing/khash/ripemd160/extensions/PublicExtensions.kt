@@ -16,4 +16,4 @@ fun ByteArray.digestRipemd160(): ByteArray {
 /**
  * Computes the RIPEMD160 for [this] string.
  */
-fun String.digestRipemd160() = toByteArray(Charsets.UTF_8).digestRipemd160()
+fun String.digestRipemd160() = encodeToByteArray().digestRipemd160()

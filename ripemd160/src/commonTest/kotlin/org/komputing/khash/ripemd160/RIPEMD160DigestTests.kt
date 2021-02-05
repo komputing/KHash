@@ -1,10 +1,10 @@
 package org.komputing.khash.ripemd160
 
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
 import org.komputing.khash.ripemd160.extensions.digestRipemd160
 import org.komputing.khex.extensions.hexToByteArray
 import org.komputing.khex.model.HexString
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 class RIPEMD160DigestTests {
 
@@ -31,7 +31,7 @@ class RIPEMD160DigestTests {
     @Test
     fun testByteArrayInput() {
         testVectors.forEach { (message, expectedDigest) ->
-            assertTrue(message.toByteArray().digestRipemd160().contentEquals(HexString(expectedDigest).hexToByteArray()))
+            assertTrue(message.encodeToByteArray().digestRipemd160().contentEquals(HexString(expectedDigest).hexToByteArray()))
         }
     }
 }
