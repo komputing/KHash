@@ -46,7 +46,7 @@ object Sha512 {
         val expandedMessageBlocks: Array<LongArray> = calculateMessageBlocks(blocks)
         // Set up the buffer which will eventually contain the final hash
         // Initially, it's set to the constants provided as part of the algorithm
-        val buffer: LongArray = h0.clone()
+        val buffer: LongArray = h0.copyOf()
         // For every block
         for (i in blocks.indices) { // a-h is set to the buffer initially
             var a = buffer[0]
@@ -101,7 +101,7 @@ object Sha512 {
     private fun maj(x: Long, y: Long, z: Long) = x and y xor (x and z) xor (y and z)
 
     // Used in the compression function
-    private fun rotate(x: Long, l: Int) = x ushr l or (x shl java.lang.Long.SIZE - l)
+    private fun rotate(x: Long, l: Int) = x ushr l or (x shl Long.SIZE_BITS - l)
 
     // Used in the compression function
     // Sn = right rotate by n bits

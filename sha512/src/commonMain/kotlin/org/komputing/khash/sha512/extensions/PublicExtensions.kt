@@ -10,4 +10,4 @@ fun ByteArray.sha512() = Sha512.digest(this)
 /**
  * Returns the SHA512 digest of this string.
  */
-fun String.sha512() = toByteArray(Charsets.UTF_8).sha512()
+fun String.sha512() = encodeToByteArray().sha512()

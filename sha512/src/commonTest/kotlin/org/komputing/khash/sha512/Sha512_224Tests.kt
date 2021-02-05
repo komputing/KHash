@@ -1,15 +1,15 @@
 package org.komputing.khash.sha512
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import org.komputing.khex.extensions.toNoPrefixHexString
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class Sha512_224Tests {
 
     @Test
     fun testDigest1() {
         testHash(
-            "".toByteArray(),
+            "".encodeToByteArray(),
             "6ed0dd02806fa89e25de060c19d3ac86cabb87d6a0ddd05c333b84f4"
         )
     }
@@ -17,7 +17,7 @@ class Sha512_224Tests {
     @Test
     fun testDigest2() {
         testHash(
-            "Hello world!".toByteArray(),
+            "Hello world!".encodeToByteArray(),
             "b48c4994a3d2b6b48ae7fa6fcc09f33dc0c985109c0b7493fd3c74d0"
         )
     }
@@ -27,7 +27,7 @@ class Sha512_224Tests {
         val loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                 "Proin pulvinar turpis purus, sit amet dapibus magna commodo quis metus."
         testHash(
-            loremIpsum.toByteArray(),
+            loremIpsum.encodeToByteArray(),
             "09c63e3a2e822c8477b192da10afa757824ba057d9996b823ad08656"
         )
     }
