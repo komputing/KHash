@@ -6,7 +6,7 @@ kotlin {
     sourceSets{
         commonMain {
             dependencies {
-                implementation("com.ionspin.kotlin:bignum:0.2.4")
+                implementation("com.ionspin.kotlin:bignum:${Versions.bignum}")
             }
         }
     }

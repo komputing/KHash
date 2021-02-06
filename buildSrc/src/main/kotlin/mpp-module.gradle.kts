@@ -27,7 +27,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("com.github.fullkomnun:khex:1.0.0") // TODO: remove usage of maven local for KHex
+                implementation("com.github.fullkomnun:khex:${Versions.khex}") // TODO: remove usage of maven local for KHex
             }
         }
 
