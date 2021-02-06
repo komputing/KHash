@@ -10,7 +10,7 @@ import org.komputing.khash.sha256.extensions.toIntArray
  * Digest Class for SHA-256.
  * Original Java version at https://github.com/meyfa/java-sha256/blob/master/src/main/java/net/meyfa/sha256/Sha256.java
  */
-object Sha256 {
+public object Sha256 {
 
     private val K = intArrayOf(
         0x428a2f98, 0x71374491, -0x4a3f0431, -0x164a245b, 0x3956c25b, 0x59f111f1, -0x6dc07d5c, -0x54e3a12b,
@@ -39,7 +39,7 @@ object Sha256 {
      * @param message The bytes to digest.
      * @return The digest's bytes.
      */
-    fun digest(message: ByteArray): ByteArray {
+    public fun digest(message: ByteArray): ByteArray {
         // Let H = H0
         H0.copy(0,
             H, 0, H0.size)

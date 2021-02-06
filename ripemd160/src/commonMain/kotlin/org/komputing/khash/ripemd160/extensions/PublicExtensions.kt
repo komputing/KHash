@@ -5,7 +5,7 @@ import org.komputing.khash.ripemd160.Ripemd160Digest
 /**
  * Computes the RIPEMD160 from [this] [ByteArray].
  */
-fun ByteArray.digestRipemd160(): ByteArray {
+public fun ByteArray.digestRipemd160(): ByteArray {
     return ByteArray(Ripemd160Digest.DIGEST_LENGTH).apply {
         val digest = Ripemd160Digest()
         digest.update(this@digestRipemd160, 0, this@digestRipemd160.size)
@@ -16,4 +16,4 @@ fun ByteArray.digestRipemd160(): ByteArray {
 /**
  * Computes the RIPEMD160 for [this] string.
  */
-fun String.digestRipemd160() = encodeToByteArray().digestRipemd160()
+public fun String.digestRipemd160(): ByteArray = encodeToByteArray().digestRipemd160()

@@ -9,7 +9,7 @@ plugins {
 }
 
 kotlin {
-    //explicitApi() // TODO: enable strict 'explicitApi'
+    explicitApi()
     targets {
         jvm()
         js(BOTH) {

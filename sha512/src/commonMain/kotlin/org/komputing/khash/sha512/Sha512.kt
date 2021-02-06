@@ -4,7 +4,7 @@ package org.komputing.khash.sha512
  * Digest Class for SHA-512.
  * Original Java version at https://github.com/trittimo/SHA512
  */
-object Sha512 {
+public object Sha512 {
 
     private val K = longArrayOf(
         0x428A2F98D728AE22L, 0x7137449123EF65CDL, -0x4a3f043013b2c4d1L, -0x164a245a7e762444L,
@@ -34,7 +34,7 @@ object Sha512 {
         0x510E527FADE682D1L, -0x64fa9773d4c193e1L, 0x1F83D9ABFB41BD6BL, 0x5BE0CD19137E2179L
     )
 
-    fun digest(input: ByteArray) = digest(input, H0)
+    public fun digest(input: ByteArray): ByteArray = digest(input, H0)
 
     // Does the actual hash
     internal fun digest(input: ByteArray, h0: LongArray): ByteArray {

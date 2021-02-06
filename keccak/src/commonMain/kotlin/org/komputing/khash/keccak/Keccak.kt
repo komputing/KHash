@@ -4,12 +4,12 @@ import com.ionspin.kotlin.bignum.integer.BigInteger
 import org.komputing.khash.keccak.extensions.fillWith
 import kotlin.math.min
 
-object Keccak {
+public object Keccak {
 
     private val BIT_65 = BigInteger.ONE shl (64)
     private val MAX_64_BITS = BIT_65 - BigInteger.ONE
 
-    fun digest(value: ByteArray, parameter: KeccakParameter): ByteArray {
+    public fun digest(value: ByteArray, parameter: KeccakParameter): ByteArray {
         val uState = IntArray(200)
         val uMessage = convertToUInt(value)
 
