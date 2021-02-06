@@ -13,6 +13,18 @@ kotlin {
     targets {
         jvm()
         js(BOTH) {
+            compilations {
+                this.forEach { compilation ->
+                    compilation.compileKotlinTask.kotlinOptions.apply {
+                        sourceMap = true
+                        moduleKind = "umd"
+                        metaInfo = true
+                        sourceMapEmbedSources = "always"
+
+                        if (compilation.name == "main") main = "noCall"
+                    }
+                }
+            }
             nodejs {
                 testTask {
                     useMocha {
