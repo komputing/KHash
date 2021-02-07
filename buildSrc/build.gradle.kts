@@ -6,7 +6,6 @@ plugins {
 
 repositories {
     gradlePluginPortal()
-    jcenter()
 }
 
 idea {
