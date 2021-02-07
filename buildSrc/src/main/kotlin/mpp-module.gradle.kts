@@ -66,25 +66,11 @@ kotlin {
 }
 
 tasks {
-    named<Test>("jvmTest") {
-        filter {
-            isFailOnNoMatchingTests = false
-        }
+    withType<AbstractTestTask> {
         testLogging {
             events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
             showExceptions = true
             exceptionFormat = TestExceptionFormat.FULL
-        }
-    }
-
-    listOf("Legacy", "Ir").forEach { jsCompiler ->
-
-        named<KotlinJsTest>("js${jsCompiler}NodeTest") {
-            testLogging {
-                events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
-                showExceptions = true
-                exceptionFormat = TestExceptionFormat.FULL
-            }
         }
     }
 }
