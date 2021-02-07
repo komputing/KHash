@@ -1,7 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 
 plugins {
     kotlin("multiplatform")
@@ -43,7 +42,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("com.github.fullkomnun:khex:${Versions.khex}") // TODO: remove usage of maven local for KHex
+                implementation("com.github.fullkomnun.khex:extensions:${Versions.khex}")
             }
         }
 
