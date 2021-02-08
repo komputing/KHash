@@ -1,4 +1,4 @@
-name: Pull Request Check
+name: Continuous Integration
 
 env:
   GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.configureondemand=false -Dorg.gradle.vfs.watch=false -Dkotlin.compiler.execution.strategy=in-process'
