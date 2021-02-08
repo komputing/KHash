@@ -5,6 +5,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     kotlin("multiplatform")
     id("com.github.ben-manes.versions")
+    id("maven-publish")
 }
 
 kotlin {
@@ -92,4 +93,19 @@ tasks.named("dependencyUpdates", DependencyUpdatesTask::class).configure {
         isNonStable(candidate.version)
     }
     checkConstraints = true
+}
+
+System.getenv("GITHUB_REPOSITORY")?.let { githubRepo ->
+    val (owner, repoName) = githubRepo.split('/').map(String::toLowerCase)
+    group = "com.github.$owner.$repoName"
+    version = System.getProperty("version")
+    publishing {
+        repositories {
+            maven {
+                name = "github"
+                url = uri("https://maven.pkg.github.com/$githubRepo")
+                credentials(PasswordCredentials::class)
+            }
+        }
+    }
 }
