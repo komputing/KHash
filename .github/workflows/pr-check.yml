@@ -1,0 +1,60 @@
+name: Continuous Integration
+
+env:
+  GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.configureondemand=false -Dorg.gradle.vfs.watch=false -Dkotlin.compiler.execution.strategy=in-process'
+  JAVA_VERSION: 11
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '*.md'
+      - 'LICENSE'
+      - '.gitignore'
+
+jobs:
+  build:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Cache gradle
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build project and run tests
+        run: ./gradlew clean build --info
+
+      - name: Bundle the failed build report
+        if: failure()
+        run: find ./build -type d -name 'reports' | zip -@ -r build-reports.zip
+
+      - name: Upload the failed build report
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: error-report
+          path: build-reports.zip
+          retention-days: 7
