@@ -1,4 +1,4 @@
 object Versions {
     const val khex = "master-SNAPSHOT"
-    const val bignum = "0.2.4"
+    const val bignum = "0.2.8"
 }
