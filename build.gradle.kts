@@ -1,50 +1,20 @@
 plugins {
-    id("com.github.ben-manes.versions").version(Versions.versions_plugin)
+    base
 }
 
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-        maven("https://plugins.gradle.org/m2/")
-    }
-
-    dependencies {
-        classpath("com.github.ben-manes:gradle-versions-plugin:${Versions.versions_plugin}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-    }
+val testAggregateReport = tasks.register<TestReport>("testAggregateReport") {
+    group = "Reporting"
+    description = "Collect aggregate test reports of all sub-modules."
+    destinationDir = file("$buildDir/reports/tests")
+    reportOn(subprojects.map {
+        it.tasks.withType<AbstractTestTask>()
+    })
 }
-
-
 
 subprojects {
-    group = "org.komputing"
-
-    plugins.apply("kotlin")
-    plugins.apply("maven")
-
-    dependencies {
-        "implementation"("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
-
-        "testCompile"("org.junit.jupiter:junit-jupiter-api:${Versions.jupiter}")
-        "testCompile"("org.junit.jupiter:junit-jupiter-params:${Versions.jupiter}")
-        "testRuntime"("org.junit.jupiter:junit-jupiter-engine:${Versions.jupiter}")
-
-        "testImplementation"("org.jetbrains.kotlin:kotlin-test")
-
-        "testImplementation"("com.github.komputing:khex:0.6")
-    }
-
-    tasks.withType<Test> {
-        useJUnitPlatform()
-        testLogging {
-            events("passed", "skipped", "failed")
+    afterEvaluate {
+        tasks.withType<AbstractTestTask> {
+            finalizedBy(testAggregateReport)
         }
-    }
-
-    repositories {
-        jcenter()
-        maven("https://jitpack.io")
-        maven("https://kotlin.bintray.com/kotlinx")
     }
 }
