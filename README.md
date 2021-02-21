@@ -1,8 +1,8 @@
-[![](https://jitpack.io/v/komputing/khash.svg)](https://jitpack.io/#komputing/khash)
+![CI](https://github.com/komputing/KHash/workflows/Continuous%20Integration/badge.svg)
 
 # KHash
 
-KHash is a Kotlin library implementing common hashing functions.
+KHash is a Kotlin multiplatform library implementing common hashing functions.
 
 A part from that, it also provides some useful [extensions functions](https://kotlinlang.org/docs/reference/extensions.html).
 
@@ -13,6 +13,57 @@ The implemented hashing functions are the following.
    - Heavily based on this java implementation: [@romus/sha](https://github.com/romus/sha)
    - Tested with [Nist test vectors](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Algorithm-Validation-Program/documents/sha3/sha-3bittestvectors.zip)
 
+## Get it
+
+### GitHub Packages
+
+This library is available through GitHub Packages.
+
+![badge][badge-js]
+![badge][badge-jvm]
+
+In order to use it, first include the GitHub Packages maven repository inside your project `build.gradle.kts` file:
+
+```kotlin
+repositories {
+    maven {
+        name = "komputing/KHash GitHub Packages"
+        url = uri("https://maven.pkg.github.com/komputing/KHash")
+        credentials {
+            username = "token"
+            password = "\u0039\u0032\u0037\u0034\u0031\u0064\u0038\u0033\u0064\u0036\u0039\u0061\u0063\u0061\u0066\u0031\u0062\u0034\u0061\u0030\u0034\u0035\u0033\u0061\u0063\u0032\u0036\u0038\u0036\u0062\u0036\u0032\u0035\u0065\u0034\u0061\u0065\u0034\u0032\u0062"
+        }
+    }
+}
+```
+When 'username' could be anything and 'password' is an [encoded access token for public access](https://github.community/t/download-from-github-package-registry-without-authentication/14407/44).
+
+### JitPack (JVM only!)
+
+This library is available on Jitpack. The current version is:
+
+[![](https://jitpack.io/v/komputing/khash.svg)](https://jitpack.io/#komputing/khash)
+![badge][badge-jvm]
+
+In order to use it, first include the Jitpack maven repository inside your project `build.gradle.kts` file:
+
+```kotlin
+repositories {
+    maven { url="https://jitpack.io" }
+}
+```
+
+## Set it up
+
+Include the modules inside your project:
+
+```kotlin
+dependencies {
+    implementation("com.github.komputing.khash:<module>:<version>")
+}
+```
+
+Where `<version>` can be either a [release](https://github.com/komputing/KHash/releases) or `<branch>-SNAPSHOT` such as `master-SNAPHOT`.
 
 ## Usage
 ### `keccak`
@@ -92,3 +143,6 @@ Also this code is not hardened against side channel attacks. Keep this in mind w
 
 # License
 MIT
+
+[badge-js]: http://img.shields.io/badge/platform-js-yellow.svg?style=flat
+[badge-jvm]: http://img.shields.io/badge/platform-jvm-orange.svg?style=flat
