@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
@@ -24,19 +26,7 @@ kotlin {
                 kotlinOptions.jvmTarget = "1.8"
             }
         }
-        js(BOTH) {
-            compilations {
-                this.forEach { compilation ->
-                    compilation.compileKotlinTask.kotlinOptions.apply {
-                        sourceMap = true
-                        moduleKind = "umd"
-                        metaInfo = true
-                        sourceMapEmbedSources = "always"
-
-                        if (compilation.name == "main") main = "noCall"
-                    }
-                }
-            }
+        js(IR) {
             nodejs {
                 testTask {
                     useMocha {
