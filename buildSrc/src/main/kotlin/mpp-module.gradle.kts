@@ -54,7 +54,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("KHex:extensions:${Versions.khex}")
+                implementation("com.github.komputing.khex:extensions:${Versions.khex}")
             }
         }
 
