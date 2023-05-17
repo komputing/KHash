@@ -1,5 +1,3 @@
-System.setProperty("user.dir", project.projectDir.toString())
-
 plugins {
     base
 }
