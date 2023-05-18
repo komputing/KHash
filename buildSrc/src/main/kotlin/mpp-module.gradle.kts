@@ -8,13 +8,15 @@ plugins {
     id("maven-publish")
 }
 
-val nativeTargets = arrayOf(
-    "linuxX64",
+val darwinTargets = arrayOf(
     "macosX64", "macosArm64",
-    "iosArm32", "iosArm64", "iosX64", "iosSimulatorArm64",
+    "iosArm64", "iosX64", "iosSimulatorArm64",
     "tvosArm64", "tvosX64", "tvosSimulatorArm64",
-    "watchosArm32", "watchosArm64", "watchosX86", "watchosX64", "watchosSimulatorArm64",
+    "watchosArm32", "watchosArm64", "watchosX64", "watchosSimulatorArm64",
 )
+val linuxTargets = arrayOf("linuxX64", "linuxArm64")
+val mingwTargets = arrayOf("mingwX64")
+val nativeTargets = linuxTargets + darwinTargets + mingwTargets
 
 kotlin {
     explicitApi()
