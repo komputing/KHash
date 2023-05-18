@@ -21,10 +21,10 @@ kotlin {
     targets {
         jvm {
             compilations.all {
-                kotlinOptions.jvmTarget = "1.8"
+                kotlinOptions.jvmTarget = "11"
             }
         }
-        js(BOTH) {
+        js(IR) {
             compilations {
                 this.forEach { compilation ->
                     compilation.compileKotlinTask.kotlinOptions.apply {
@@ -54,7 +54,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("KHex:extensions:${Versions.khex}")
+                implementation("com.github.komputing.khex:extensions:${Versions.khex}")
             }
         }
 
