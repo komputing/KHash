@@ -4,7 +4,7 @@
 
 KHash is a Kotlin multiplatform library implementing common hashing functions.
 
-A part from that, it also provides some useful [extensions functions](https://kotlinlang.org/docs/reference/extensions.html).
+Apart from that, it also provides some useful [extensions functions](https://kotlinlang.org/docs/reference/extensions.html).
 
 The implemented hashing functions are the following. 
 * [RIPEMD160](https://en.wikipedia.org/wiki/RIPEMD)
@@ -19,8 +19,13 @@ The implemented hashing functions are the following.
 
 This library is available through GitHub Packages.
 
-![badge][badge-js]
+![badge][badge-android]
+![badge][badge-ios]
+![badge][badge-js-ir]
 ![badge][badge-jvm]
+![badge][badge-linux]
+![badge][badge-mac]
+![badge][badge-apple-silicon]
 
 In order to use it, first include the GitHub Packages maven repository inside your project `build.gradle.kts` file:
 
@@ -34,22 +39,6 @@ repositories {
             password = "\u0039\u0032\u0037\u0034\u0031\u0064\u0038\u0033\u0064\u0036\u0039\u0061\u0063\u0061\u0066\u0031\u0062\u0034\u0061\u0030\u0034\u0035\u0033\u0061\u0063\u0032\u0036\u0038\u0036\u0062\u0036\u0032\u0035\u0065\u0034\u0061\u0065\u0034\u0032\u0062"
         }
     }
-}
-```
-When 'username' could be anything and 'password' is an [encoded access token for public access](https://github.community/t/download-from-github-package-registry-without-authentication/14407/44).
-
-### JitPack (JVM only!)
-
-This library is available on Jitpack. The current version is:
-
-[![](https://jitpack.io/v/komputing/khash.svg)](https://jitpack.io/#komputing/khash)
-![badge][badge-jvm]
-
-In order to use it, first include the Jitpack maven repository inside your project `build.gradle.kts` file:
-
-```kotlin
-repositories {
-    maven { url="https://jitpack.io" }
 }
 ```
 
@@ -144,5 +133,17 @@ Also this code is not hardened against side channel attacks. Keep this in mind w
 # License
 MIT
 
-[badge-js]: http://img.shields.io/badge/platform-js-yellow.svg?style=flat
-[badge-jvm]: http://img.shields.io/badge/platform-jvm-orange.svg?style=flat
+[badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg?style=flat
+[badge-android-native]: http://img.shields.io/badge/support-[AndroidNative]-6EDB8D.svg?style=flat
+[badge-jvm]: http://img.shields.io/badge/-jvm-DB413D.svg?style=flat
+[badge-js]: http://img.shields.io/badge/-js-F8DB5D.svg?style=flat
+[badge-js-ir]: http://img.shields.io/badge/-js--IR-F8DB5D.svg?style=flat
+[badge-nodejs]: https://img.shields.io/badge/-nodejs-68a063.svg?style=flat
+[badge-linux]: http://img.shields.io/badge/-linux-2D3F6C.svg?style=flat
+[badge-windows]: http://img.shields.io/badge/-windows-4D76CD.svg?style=flat
+[badge-wasm]: https://img.shields.io/badge/-wasm-624FE8.svg?style=flat
+[badge-apple-silicon]: http://img.shields.io/badge/support-[AppleSilicon]-43BBFF.svg?style=flat
+[badge-ios]: http://img.shields.io/badge/-ios-CDCDCD.svg?style=flat
+[badge-mac]: http://img.shields.io/badge/-macos-111111.svg?style=flat
+[badge-watchos]: http://img.shields.io/badge/-watchos-C0C0C0.svg?style=flat
+[badge-tvos]: http://img.shields.io/badge/-tvos-808080.svg?style=flat

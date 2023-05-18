@@ -17,8 +17,8 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    runs-on: macos-latest
 
     steps:
       - name: Checkout the repo
@@ -47,7 +47,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build project and run tests with Gradle
-        run: ./gradlew clean build --info
+        run: ./gradlew clean build
 
       - name: Bundle the failed build report
         if: failure()

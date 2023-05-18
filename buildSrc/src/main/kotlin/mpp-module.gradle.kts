@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
@@ -8,6 +10,7 @@ plugins {
     id("maven-publish")
 }
 
+
 val darwinTargets = arrayOf(
     "macosX64", "macosArm64",
     "iosArm64", "iosX64", "iosSimulatorArm64",
@@ -17,6 +20,7 @@ val darwinTargets = arrayOf(
 val linuxTargets = arrayOf("linuxX64", "linuxArm64")
 val mingwTargets = arrayOf("mingwX64")
 val nativeTargets = linuxTargets + darwinTargets + mingwTargets
+
 
 kotlin {
     explicitApi()

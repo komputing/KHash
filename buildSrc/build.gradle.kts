@@ -1,7 +1,14 @@
+import java.io.File
+import java.util.*
+
 plugins {
     idea
     `kotlin-dsl`
     `kotlin-dsl-precompiled-script-plugins`
+}
+
+val rootProperties = Properties().apply {
+    load(File(projectDir, "../gradle.properties").inputStream())
 }
 
 repositories {
@@ -16,6 +23,9 @@ idea {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", "${property("kgp")}"))
-    implementation("com.github.ben-manes", "gradle-versions-plugin", "${property("plugin.com.github.ben-manes.versions")}")
+    implementation(kotlin("gradle-plugin", rootProperties.getProperty("kgp")))
+    implementation(
+        "com.github.ben-manes", "gradle-versions-plugin",
+        rootProperties.getProperty("plugin.com.github.ben-manes.versions")
+    )
 }
