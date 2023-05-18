@@ -96,7 +96,7 @@ tasks {
  * **/
 tasks.named("dependencyUpdates", DependencyUpdatesTask::class).configure {
     fun isNonStable(version: String): Boolean {
-        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
         val regex = "^[0-9,.v-]+(-r)?$".toRegex()
         val isStable = stableKeyword || regex.matches(version)
         return isStable.not()
@@ -109,7 +109,7 @@ tasks.named("dependencyUpdates", DependencyUpdatesTask::class).configure {
 }
 
 System.getenv("GITHUB_REPOSITORY")?.let { githubRepo ->
-    val (owner, repoName) = githubRepo.split('/').map(String::toLowerCase)
+    val (owner, repoName) = githubRepo.split('/').map(String::lowercase)
     group = "com.github.$owner.$repoName"
     version = System.getProperty("version")
     publishing {
