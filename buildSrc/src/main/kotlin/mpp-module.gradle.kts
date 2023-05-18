@@ -10,23 +10,39 @@ plugins {
     id("maven-publish")
 }
 
-val nativeTargets = arrayOf(
-    "linuxX64",
+
+val darwinTargets = arrayOf(
     "macosX64", "macosArm64",
     "iosArm64", "iosX64", "iosSimulatorArm64",
     "tvosArm64", "tvosX64", "tvosSimulatorArm64",
     "watchosArm32", "watchosArm64", "watchosX64", "watchosSimulatorArm64",
 )
+val linuxTargets = arrayOf("linuxX64", "linuxArm64")
+val mingwTargets = arrayOf("mingwX64")
+val nativeTargets = linuxTargets + darwinTargets + mingwTargets
+
 
 kotlin {
     explicitApi()
     targets {
         jvm {
             compilations.all {
-                kotlinOptions.jvmTarget = "1.8"
+                kotlinOptions.jvmTarget = "11"
             }
         }
         js(IR) {
+            compilations {
+                this.forEach { compilation ->
+                    compilation.compileKotlinTask.kotlinOptions.apply {
+                        sourceMap = true
+                        moduleKind = "umd"
+                        metaInfo = true
+                        sourceMapEmbedSources = "always"
+
+                        if (compilation.name == "main") main = "noCall"
+                    }
+                }
+            }
             nodejs {
                 testTask {
                     useMocha {
@@ -84,7 +100,7 @@ tasks {
  * **/
 tasks.named("dependencyUpdates", DependencyUpdatesTask::class).configure {
     fun isNonStable(version: String): Boolean {
-        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
         val regex = "^[0-9,.v-]+(-r)?$".toRegex()
         val isStable = stableKeyword || regex.matches(version)
         return isStable.not()
@@ -97,7 +113,7 @@ tasks.named("dependencyUpdates", DependencyUpdatesTask::class).configure {
 }
 
 System.getenv("GITHUB_REPOSITORY")?.let { githubRepo ->
-    val (owner, repoName) = githubRepo.split('/').map(String::toLowerCase)
+    val (owner, repoName) = githubRepo.split('/').map(String::lowercase)
     group = "com.github.$owner.$repoName"
     version = System.getProperty("version")
     publishing {
