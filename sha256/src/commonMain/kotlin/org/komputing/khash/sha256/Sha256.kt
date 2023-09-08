@@ -36,9 +36,9 @@ public object Sha256 {
      */
     public fun digest(message: ByteArray): ByteArray {
         // Working arrays
-        private val W = IntArray(64)
-        private val H = IntArray(8)
-        private val TEMP = IntArray(8)
+        val W = IntArray(64)
+        val H = IntArray(8)
+        val TEMP = IntArray(8)
     
         // Let H = H0
         H0.copy(0,
