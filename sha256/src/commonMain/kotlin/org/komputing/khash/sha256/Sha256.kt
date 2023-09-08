@@ -28,11 +28,6 @@ public object Sha256 {
         0x510e527f, -0x64fa9774, 0x1f83d9ab, 0x5be0cd19
     )
 
-    // Working arrays
-    private val W = IntArray(64)
-    private val H = IntArray(8)
-    private val TEMP = IntArray(8)
-
     /**
      * Hashes the given message with SHA-256 and returns the digest.
      *
@@ -40,6 +35,11 @@ public object Sha256 {
      * @return The digest's bytes.
      */
     public fun digest(message: ByteArray): ByteArray {
+        // Working arrays
+        private val W = IntArray(64)
+        private val H = IntArray(8)
+        private val TEMP = IntArray(8)
+    
         // Let H = H0
         H0.copy(0,
             H, 0, H0.size)
